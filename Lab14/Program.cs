@@ -1,6 +1,5 @@
 using ConsoleIOLib;
 using Lab10Lib.Entities;
-using Lab10Lib.Utils;
 
 namespace Lab14
 {
@@ -8,35 +7,62 @@ namespace Lab14
     {
         public static void Main()
         {
-            // List<List<Person>> list = [];
-            // for (int i = 0; i < 6; i++)
-            // {
-            //     List<Person> sub = [];
-            //     sub.AddRange(PersonGenerator.GetRandomPerson(10));
-            //     list.Add(sub);
-            // }
+            Stack<Dictionary<Person, Person>> city = new(
+                Enumerable
+                    .Range(0, 10)
+                    .Select(_ => new Dictionary<Person, Person>(
+                        Enumerable
+                            .Range(0, 10)
+                            .Select(_ =>
+                            {
+                                var person = Person.RandomInit();
+                                return new KeyValuePair<Person, Person>(person, person);
+                            }
+                        )
+                    )
+                )
+            );
+
+            PrintCity(city);
+
+            var a = Queries.GroupPersonsBy(city, e => e.Age);
+
+            PrintCity(a);
+        }
+
+        private static void PrintCity(Stack<Dictionary<Person, Person>> city)
+        {
+            foreach (var university in city)
+            {
+                foreach (var (key, value) in university)
+                    ConsoleIO.WriteLine($"(K: V) {key}: {value}");
+                ConsoleIO.Write('\n');
+            }
         }
     }
 
     public static class Queries
     {
-        public static IEnumerable<Student> GetStudentsWithRatingGreaterThan(this Stack<Dictionary<Person, Person>> city, float rating)
-            => from university in city
-               from pair in university
-               where pair.Value is Student student && student.Rating > rating
-               select pair.Value as Student;
+        public static IEnumerable<Person> Where(
+            this Stack<Dictionary<Person, Person>> city,
+            Func<Person, bool> predicate
+        ) => from university in city
+             from pair in university
+             where predicate(pair.Value)
+             select pair.Value;
 
-        public static int GetPartTimeStudentsCount(this Stack<Dictionary<Person, Person>> city)
-            => (from university in city
-                from pair in university
-                where pair.Value is PartTimeStudent
-                select pair.Key).Count();
+        public static int CountWhere(
+            this Stack<Dictionary<Person, Person>> city,
+            Func<Person, bool> predicate
+        ) => (from university in city
+              from pair in university
+              where predicate(pair.Value)
+              select pair.Key).Count();
 
-        public static IEnumerable<Person> GetAbnormalPersons(
+        public static Stack<Dictionary<Person, Person>> MergeCitiesDatabases(
             this Stack<Dictionary<Person, Person>> city,
             Stack<Dictionary<Person, Person>> other
-        ) => city.SelectMany(element => element.Values).Intersect(
-            other.SelectMany(element => element.Values));
+        ) => new(city.UnionBy(other, e => e.Keys));
 
         public static float GetPupilsAvgRating(this Stack<Dictionary<Person, Person>> city)
             => (from school in city
@@ -44,10 +70,14 @@ namespace Lab14
                 where pair.Value is Pupil
                 select (pair.Value as Pupil)!.Rating).Average();
 
-        public static IEnumerable<IEnumerable<Person>> GroupPersonsByAge(this Stack<Dictionary<Person, Person>> city)
-            => from university in city
-               from pair in university
-               group pair.Value by pair.Value.Age into g
-               select g.AsEnumerable();
+        public static Stack<Dictionary<Person, Person>> GroupPersonsBy(
+            this Stack<Dictionary<Person, Person>> city,
+            Func<Person, object> predicate
+        ) => new(
+                from university in city
+                from pair in university
+                group pair by predicate(pair.Key) into g
+                select new Dictionary<Person, Person>(g)
+            );
     }
 }
