@@ -1,6 +1,4 @@
 using ConsoleDialogLib;
-using Lab10Lib.Entities;
-using Lab12Lib.BinaryTree;
 
 namespace Lab14
 {

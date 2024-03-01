@@ -10,7 +10,7 @@ namespace Lab14
         public const string Task1DialogTitle = "Задание 1";
         public const string Task1DialogOption1 = "Выборка данных (ученики с рейтингом выше заданного)";
         public const string Task1DialogOption2 = "Получение счетчика (кол-во студентов с рейтингом выше заданного)";
-        public const string Task1DialogOption3 = "Объединение данных";
+        public const string Task1DialogOption3 = "Объединение данных (выборка уникальных персон)";
         public const string Task1DialogOption4 = "Агрегирование данных (средний рейтинг студентов)";
         public const string Task1DialogOption5 = "Группировка данных (группировка по типу персоны)";
         public const string Task2DialogTitle = "Задание 2";
@@ -19,9 +19,9 @@ namespace Lab14
         public const string Task2DialogOption3 = "Сортировка коллекции (по возрастанию/по убыванию)";
         public const string Task1Option1Process = "Ученики с рейтингом выше заданного:";
         public const string Task1Option2Process = "Кол-во студентов с рейтингом выше заданного: {0}";
-        public const string Task1Option3ProcessNewCreated= "Создается новый город, с одним учебным заведением из старого города";
-        public const string Task1Option3ProcessNewPrint= "Новый город";
-        public const string Task1Option3ProcessMergedPrint = "Полученный соединением город (нет дубликатов)";
+        public const string Task1Option3ProcessNewCreated = "Создается новый город, с одним учебным заведением из старого города";
+        public const string Task1Option3ProcessNewPrint = "Новый город";
+        public const string Task1Option3ProcessMergedPrint = "Уникальные персоны обоих городов:";
         public const string Task1Option4Process = "Средний рейтинг студентов: {0}";
         public const string Task1Option5Process = "Сгруппированные персоны";
         public const string Task2Option1Process = "Персоны с возрастом выше чем заданным возрастом:";

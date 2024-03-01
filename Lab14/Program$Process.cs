@@ -47,7 +47,10 @@ namespace Lab14
             Utils.PrintCity(temp, Messages.Task1Option3ProcessNewPrint);
 
             var result = city.MergeCitiesDatabases(temp);
-            Utils.PrintCity(result, Messages.Task1Option3ProcessMergedPrint);
+            
+            ConsoleIO.WriteLine(Messages.Task1Option3ProcessMergedPrint);
+            foreach (var person in result)
+                ConsoleIO.WriteLine(person);
         }
 
         private static void Task1Option4Process()

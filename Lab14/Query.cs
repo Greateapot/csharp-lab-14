@@ -1,6 +1,4 @@
-using System.Dynamic;
 using Lab10Lib.Entities;
-using Lab10Lib.Utils;
 using Lab12Lib.BinaryTree;
 
 namespace Lab14
@@ -23,10 +21,12 @@ namespace Lab14
               where pair.Value is Student student && predicate(student)
               select pair).Count();
 
-        public static Stack<Dictionary<Person, Person>> MergeCitiesDatabases(
+        public static IEnumerable<Person> MergeCitiesDatabases(
             this Stack<Dictionary<Person, Person>> city,
             Stack<Dictionary<Person, Person>> other
-        ) => new(city.UnionBy(other, e => e.Keys));
+        ) => city
+            .SelectMany(e => e.Values)
+            .Union(other.SelectMany(e => e.Values));
 
         public static float GetStudentsAvgRating(
             this Stack<Dictionary<Person, Person>> city
