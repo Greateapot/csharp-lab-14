@@ -1,4 +1,3 @@
-using ConsoleIOLib;
 using Lab10Lib.Entities;
 using Lab10Lib.Utils;
 
@@ -20,19 +19,21 @@ namespace Lab14
             )
         );
 
-        public static void PrintCity(Stack<Dictionary<Person, Person>> city, string cityName = "city")
+        public static string PrintCity(Stack<Dictionary<Person, Person>> city, string cityName = "city")
         {
-            ConsoleIO.WriteLine($"--- {cityName} begin ---");
+            var result = "";
+            result += $"--- {cityName} begin ---\n";
             var universityCounter = 1;
             foreach (var university in city)
             {
-                ConsoleIO.WriteLine($"TextCount №{universityCounter}");
+                result += $"TextCount №{universityCounter}\n";
                 foreach (var (key, value) in university)
-                    ConsoleIO.WriteLine($"Key: {key}\n\tValue: {value}");
-                if (universityCounter != city.Count) ConsoleIO.Write('\n');
+                    result += $"Key: {key}\n\tValue: {value}\n";
+                if (universityCounter != city.Count) result += "\n";
                 universityCounter++;
             }
-            ConsoleIO.WriteLine($"--- {cityName} end ---");
+            result += $"--- {cityName} end ---\n";
+            return result;
         }
     }
 }

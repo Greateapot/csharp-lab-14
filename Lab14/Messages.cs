@@ -7,13 +7,13 @@ namespace Lab14
         public const string MainDialogTitle = "Выберите задание:";
         public const string MainDialogOption1 = "Задание 1";
         public const string MainDialogOption2 = "Задание 2";
-        public const string Task1DialogTitle = "Задание 1";
+        public const string Task1DialogTitle = "{0}\n\nЗадание 1";
         public const string Task1DialogOption1 = "Выборка данных (ученики с рейтингом выше заданного)";
         public const string Task1DialogOption2 = "Получение счетчика (кол-во студентов с рейтингом выше заданного)";
         public const string Task1DialogOption3 = "Объединение данных (выборка уникальных персон)";
         public const string Task1DialogOption4 = "Агрегирование данных (средний рейтинг студентов)";
         public const string Task1DialogOption5 = "Группировка данных (группировка по типу персоны)";
-        public const string Task2DialogTitle = "Задание 2";
+        public const string Task2DialogTitle = "{0}\n\nЗадание 2";
         public const string Task2DialogOption1 = "На выборку по условию (условие: рейтинг ученика больше чем заданное значение)";
         public const string Task2DialogOption2 = "Агрегирование данных (средний возраст персон)";
         public const string Task2DialogOption3 = "Сортировка коллекции (по возрастанию/по убыванию)";

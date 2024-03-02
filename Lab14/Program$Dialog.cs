@@ -1,4 +1,6 @@
 using ConsoleDialogLib;
+using Lab10Lib.Entities;
+using Lab12Lib.BinaryTree;
 
 namespace Lab14
 {
@@ -13,7 +15,7 @@ namespace Lab14
         );
 
         private static ConsoleDialog Task1Dialog() => new(
-            Messages.Task1DialogTitle,
+            () => string.Format(Messages.Task1DialogTitle, Utils.PrintCity(InstanceHolder.Get<Stack<Dictionary<Person, Person>>>())),
             [
                 new(Messages.Task1DialogOption1, _ => Task1Option1Process(), pauseAfterExecuted: true),
                 new(Messages.Task1DialogOption2, _ => Task1Option2Process(), pauseAfterExecuted: true),
@@ -24,7 +26,7 @@ namespace Lab14
         );
 
         private static ConsoleDialog Task2Dialog() => new(
-            Messages.Task2DialogTitle,
+            () => string.Format(Messages.Task2DialogTitle, InstanceHolder.Get<BinaryTree<Person>>().ToString()),
             [
                 new(Messages.Task2DialogOption1, _ => Task2Option1Process(), pauseAfterExecuted: true),
                 new(Messages.Task2DialogOption2, _ => Task2Option2Process(), pauseAfterExecuted: true),

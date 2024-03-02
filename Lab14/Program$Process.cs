@@ -44,7 +44,7 @@ namespace Lab14
             var temp = Utils.CreateCity(3);
             temp.Pop();
             temp.Push(new Dictionary<Person, Person>(city.Last()));
-            Utils.PrintCity(temp, Messages.Task1Option3ProcessNewPrint);
+            ConsoleIO.WriteLine(Utils.PrintCity(temp, Messages.Task1Option3ProcessNewPrint));
 
             var result = city.MergeCitiesDatabases(temp);
             
@@ -63,7 +63,7 @@ namespace Lab14
         {
             var city = InstanceHolder.Get<Stack<Dictionary<Person, Person>>>();
             var result = city.GroupPersonsByType();
-            Utils.PrintCity(result, Messages.Task1Option5Process);
+            ConsoleIO.WriteLine(Utils.PrintCity(result, Messages.Task1Option5Process));
         }
 
         private static void Task2Option1Process()
